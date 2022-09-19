@@ -1,8 +1,11 @@
+
 import React from "react";
 import { Route, Routes } from "react-router";
 //import './App.css';
 //import Landing from "./pages/LandingPage/Landing";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import MainPage from './pages/mainPage/mainPage';
+
 
 const App = () => {
   return (
@@ -12,6 +15,14 @@ const App = () => {
         element={
           <>
             <LandingPage />
+          </>
+        }
+      />
+      <Route
+        path="/MainPage"
+        element={
+          <>
+            <MainPage />
           </>
         }
       />
