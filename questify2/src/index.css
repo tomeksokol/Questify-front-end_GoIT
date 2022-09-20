@@ -13,7 +13,7 @@
   src: local("HelveticaNeueCyr-light"),
     url(./utils/fonts/HelveticaNeueCyr-Light.otf) format("truetype");
 }
-* {
+/* * {
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
@@ -35,4 +35,4 @@ code {
 }
 button {
   cursor: pointer;
-}
+} */
