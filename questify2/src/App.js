@@ -1,9 +1,11 @@
-import React from 'react';
 
-// import './App.css';
-import { MainPage } from './pages/mainPage/mainPage';
+import React from "react";
 import { Route, Routes } from "react-router";
-import Landing from "./pages/LandingPage/Landing";
+//import './App.css';
+//import Landing from "./pages/LandingPage/Landing";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import MainPage from './pages/mainPage/mainPage';
+
 
 const App = () => {
   return (
@@ -12,13 +14,18 @@ const App = () => {
         path="/"
         element={
           <>
-            <Landing />
-            <div className="App">
-            <MainPage/>
-            </div>
+            <LandingPage />
           </>
         }
       />
+      {/* <Route
+        path="/MainPage"
+        element={
+          <>
+            <MainPage />
+          </>
+        }
+      /> */}
     </Routes>
   );
 };
