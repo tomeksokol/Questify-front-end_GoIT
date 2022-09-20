@@ -67,7 +67,6 @@
     height: 100vh;
     background: url(../../images/landing/tablet/landingT1.png) no-repeat 100% 0%,
       url(../../images/landing/tablet/landingT2.png) no-repeat 100% 100%;
- 
   }
   .position {
     padding-top: 310px;
@@ -94,7 +93,6 @@
     background: url(../../images/landing/desktop/landingD1.png) no-repeat 100%
         0%,
       url(../../images/landing/desktop/landingD2.png) no-repeat 100% 110%;
- 
   }
   .position {
     padding-top: 195px;
