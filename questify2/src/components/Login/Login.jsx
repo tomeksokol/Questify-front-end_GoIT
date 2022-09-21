@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import { createUser } from "../../redux/auth/actions.js";
 import { selectUserRequestStatus } from "../../redux/auth/selectors.js";
+import { useDispatch, useSelector } from "react-redux";
 
 import s from "./Login.module.css";
 import sc from "../../utils/Container.module.css";
@@ -11,8 +12,13 @@ import ButtonGo from "../ButtonGo/ButtonGo.jsx";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const userRequestStatus = useSelector(selectUserRequestStatus);
+ const userRequestStatus = useSelector(selectUserRequestStatus);
   const navigate = useNavigate();
+
+  const inputRef = useRef(); // { current: }
+  const nameId = useRef(nanoid());
+  const emailId = useRef(nanoid());
+  const passwordId = useRef(nanoid());
 
   const [formValues, setFormValues] = useState({
     name: "",
@@ -27,13 +33,25 @@ const Login = () => {
 
     dispatch(
       createUser({
-        name: name,
-        email: email,
-        password: password,
-      }),
+        name,
+        email,
+        password,
+      })
     );
   };
-  
+
+  const handleInputValueChange = (event) => {
+    setFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  useEffect(() => {
+    if (userRequestStatus === "success") {
+      navigate("/MainPage");
+    }
+  }, [userRequestStatus, navigate]);
 
   return (
     <div className={s.landing}>
@@ -52,38 +70,48 @@ const Login = () => {
               </h2>
             </div>
             <div className={s.spacer__email}>
-              <label htmlFor="name" className={s} required></label>
+              <label htmlFor={nameId.current} className={s} required></label>
               <input
+                ref={inputRef}
+                id={nameId.current}
                 type="text"
                 name="name"
                 required
                 className={s.input}
                 placeholder="Name"
+                value={formValues.name}
                 //defaultValue="John"
-              ></input>
+                onChange={handleInputValueChange}></input>
             </div>
             <div className={s.spacer__email}>
-              <label htmlFor="email" className={s} required></label>
+              <label htmlFor={emailId.current} className={s} required></label>
               <input
+                id={emailId.current}
                 type="text"
                 name="email"
                 required
                 className={s.input}
                 placeholder="Email"
+                value={formValues.email}
                 //defaultValue="email@mail.com"
-              ></input>
+                onChange={handleInputValueChange}></input>
             </div>
             <div className={s.spacer__password}>
-              <label htmlFor="password" className={s} required></label>
+              <label
+                htmlFor={passwordId.current}
+                className={s}
+                required></label>
               <input
+                id={passwordId.current}
                 type="password"
                 name="password"
                 required
                 className={s.input}
                 placeholder="Password"
+                value={formValues.password}
                 minLength="6"
                 //defaultValue="password123"
-              ></input>
+                onChange={handleInputValueChange}></input>
               <ButtonGo />
             </div>
           </form>
