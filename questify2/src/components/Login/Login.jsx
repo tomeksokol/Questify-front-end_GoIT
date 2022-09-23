@@ -10,7 +10,7 @@ import s from "./Login.module.css";
 import sc from "../../utils/Container.module.css";
 import ButtonGo from "../ButtonGo/ButtonGo.jsx";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-//import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    Loading.arrows("Loading");
 
     const { name, email, password } = formValues;
 
@@ -51,6 +52,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userRequestStatus === "success") {
+      Loading.remove();
       Notify.success("You are loogedin");
       setTimeout(() => {
         navigate("/MainPage");
