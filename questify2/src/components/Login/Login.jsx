@@ -53,7 +53,7 @@ const Login = () => {
   useEffect(() => {
     if (userRequestStatus === "success") {
       Loading.remove();
-      Notify.success("You are loogedin");
+      Notify.success("You are looged in");
       setTimeout(() => {
         navigate("/MainPage");
       }, 2000);
