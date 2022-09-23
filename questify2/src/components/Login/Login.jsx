@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./Login.module.css";
 import sc from "../../utils/Container.module.css";
 import ButtonGo from "../ButtonGo/ButtonGo.jsx";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+//import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const Login = () => {
   const dispatch = useDispatch();
- const userRequestStatus = useSelector(selectUserRequestStatus);
+  const userRequestStatus = useSelector(selectUserRequestStatus);
   const navigate = useNavigate();
 
   const inputRef = useRef(); // { current: }
@@ -49,7 +51,11 @@ const Login = () => {
 
   useEffect(() => {
     if (userRequestStatus === "success") {
-      navigate("/MainPage");
+      Notify.success("You are loogedin");
+      setTimeout(() => {
+        navigate("/MainPage");
+      }, 2000);
+      //navigate("/MainPage");
     }
   }, [userRequestStatus, navigate]);
 
