@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { createUser, loginUser } from "./actions";
+import { createUser, loginUser, logoutUser } from "./actions";
 import { initialState } from "../../utils/constans";
 
 const authReducer = createReducer(initialState, (builder) => {
@@ -19,7 +19,6 @@ const authReducer = createReducer(initialState, (builder) => {
 
       state.isUserAuthenticated = true;
     })
-
     .addCase(loginUser.pending, (state) => {
       state.user.status = "fetching";
     })
@@ -34,7 +33,28 @@ const authReducer = createReducer(initialState, (builder) => {
       };
 
       state.isUserAuthenticated = true;
+    })
+    .addCase(logoutUser.fulfilled, (state) => {
+           state.user = {
+             status: "idle",
+             name: "User",
+           };
+ state.isUserAuthenticated = false;
+    })
+    .addCase(logoutUser.pending, (state) => {
+          state.user = {
+            status: "idle",
+            name: "User",
+          };
+    })
+    .addCase(logoutUser.rejected, (state) => {
+           state.user = {
+             status: "idle",
+             name:"User"
+      };
+     state.isUserAuthenticated = false; 
     });
+
 });
 
 
