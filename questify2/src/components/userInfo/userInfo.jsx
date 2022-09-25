@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserName } from "../../redux/auth/selectors";
 import { logoutUser } from "../../redux/auth/actions";
 import { useNavigate } from "react-router";
+import { USER_NAME } from "../../utils/constans";
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,8 +14,7 @@ export const UserInfo = () => {
     navigate("/");
   };
 
-  const userName = useSelector(getUserName);
-  console.log(userName);
+  const userName = useSelector(getUserName) || localStorage.getItem(USER_NAME);
   const firstLetterName = userName.slice(0, 1);
   return (
     <div className={styles.username__wrapper}>

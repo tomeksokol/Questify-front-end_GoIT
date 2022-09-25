@@ -37,22 +37,19 @@ const authReducer = createReducer(initialState, (builder) => {
     .addCase(logoutUser.fulfilled, (state) => {
            state.user = {
              status: "idle",
-             name: "User",
            };
  state.isUserAuthenticated = false;
     })
     .addCase(logoutUser.pending, (state) => {
           state.user = {
-            status: "idle",
-            name: "User",
+            status: "idle",        
           };
     })
     .addCase(logoutUser.rejected, (state) => {
            state.user = {
-             status: "idle",
-             name:"User"
+             status: "idle",          
       };
-     state.isUserAuthenticated = false; 
+    //  state.isUserAuthenticated = false; 
     });
 
 });

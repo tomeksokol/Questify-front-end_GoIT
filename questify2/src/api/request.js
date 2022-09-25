@@ -1,9 +1,5 @@
-import {
-  authenticationApiClient,
-  
-  questifyApiClient,
-} from "./client";
-import { JWT_TOKEN_STORAGE_KEY } from "../utils/constans.js";
+import { authenticationApiClient, questifyApiClient } from "./client";
+import { JWT_TOKEN_STORAGE_KEY, USER_NAME } from "../utils/constans.js";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
@@ -14,8 +10,10 @@ export const createUserRequest = async (payload) => {
       "/auth/register",
       payload
     ); //change to register
-    //console.log(data)
+    // console.log(data)
+    localStorage.setItem(USER_NAME, data.user.name);
     localStorage.setItem(JWT_TOKEN_STORAGE_KEY, data.token);
+
     //Notify.success("You are loogedin");
     return data;
   } catch (error) {
@@ -61,6 +59,7 @@ export const logoutCurrentUser = async (payload) => {
     });
 
     localStorage.removeItem(JWT_TOKEN_STORAGE_KEY);
+    localStorage.removeItem(USER_NAME);
     Notify.info("You have succesfully logged out");
   } catch (error) {
     console.log(error.message);
