@@ -4,6 +4,7 @@ import {
   createUserRequest,
   authenticateUserRequest,
   getCurrentUserRequest,
+  logoutCurrentUser,
 } from "../../api/request.js";
 
 export const createUser = createAsyncThunk(
@@ -20,3 +21,7 @@ export const currentUser = createAsyncThunk(
   "auth/CURRENT_USER",
   getCurrentUserRequest,
 );
+export const logoutUser = createAsyncThunk(
+  "auth/LOGOUT_USER",
+  logoutCurrentUser,
+)

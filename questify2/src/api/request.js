@@ -1,4 +1,8 @@
-import { authenticationApiClient, questifyApiClient } from "./client";
+import {
+  authenticationApiClient,
+  
+  questifyApiClient,
+} from "./client";
 import { JWT_TOKEN_STORAGE_KEY } from "../utils/constans.js";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
@@ -47,4 +51,18 @@ export const getCurrentUserRequest = async () => {
   const { data } = await questifyApiClient.get("/auth/current"); // in case of adding get on current user data
   console.log(data);
   return data;
+};
+export const logoutCurrentUser = async (payload) => {
+  try {
+    await authenticationApiClient.post("/auth/logout", payload, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(JWT_TOKEN_STORAGE_KEY),
+      },
+    });
+
+    localStorage.removeItem(JWT_TOKEN_STORAGE_KEY);
+    Notify.info("You have succesfully logged out");
+  } catch (error) {
+    console.log(error.message);
+  }
 };

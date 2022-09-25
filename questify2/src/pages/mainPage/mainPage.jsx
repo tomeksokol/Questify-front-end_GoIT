@@ -4,14 +4,16 @@ import { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { Navigation } from "../../components/navigation/navigation";
 import { PlusBtn } from "../../components/plusBtn/plusBtn";
-export const MainPage = () => {
+import { useSelector } from "react-redux";
+ const MainPage = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
   const handleToggle = () => {
     setOpen(!open);
-  };
+   };
+
 
   return (
     <div className={styles.homepage}>
@@ -33,3 +35,4 @@ export const MainPage = () => {
     </div>
   );
 };
+export default MainPage
