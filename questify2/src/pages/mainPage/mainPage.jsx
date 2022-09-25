@@ -4,7 +4,11 @@ import { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { Navigation } from "../../components/navigation/navigation";
 import { PlusBtn } from "../../components/plusBtn/plusBtn";
-export const MainPage = () => {
+import ToDoForm from "../../features/toDoTasks/ToDoForm";
+import ToDoTask from "../../features/toDoTasks/ToDoTask";
+import ToDoList from "../../features/toDoTasks/ToDoList";
+
+const MainPage = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -20,6 +24,15 @@ export const MainPage = () => {
       <div className={styles.cards__wrapper}>
         <p>Today</p>
       </div>
+
+      <div>
+        <ToDoForm />
+      </div>
+
+      <div>
+        <ToDoList />
+      </div>
+
       <div className={styles.cards__wrapper}>
         <p>Tomorrow</p>
       </div>
@@ -33,3 +46,5 @@ export const MainPage = () => {
     </div>
   );
 };
+
+export default MainPage;
