@@ -5,7 +5,9 @@ import Backdrop from "@mui/material/Backdrop";
 import { Navigation } from "../../components/navigation/navigation";
 import { PlusBtn } from "../../components/plusBtn/plusBtn";
 import { useSelector } from "react-redux";
- const MainPage = () => {
+
+const MainPage = () => {
+
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -22,6 +24,15 @@ import { useSelector } from "react-redux";
       <div className={styles.cards__wrapper}>
         <p>Today</p>
       </div>
+
+      <div>
+        <ToDoForm />
+      </div>
+
+      <div>
+        <ToDoList />
+      </div>
+
       <div className={styles.cards__wrapper}>
         <p>Tomorrow</p>
       </div>
@@ -35,4 +46,5 @@ import { useSelector } from "react-redux";
     </div>
   );
 };
-export default MainPage
+
+export default MainPage;
