@@ -14,7 +14,11 @@ const ToDoTask = ({ id, difficulty, title, date, time, category }) => {
 
 
   return (
-    <li className={styles.todo__item} id={id} onDoubleClick={handleDoubleClick(id)}>
+    <li
+      className={styles.todo__item}
+      id={id}
+      onDoubleClick={() => handleDoubleClick(id)}
+    >
       <div className="">
         <div className={styles.first__section}>
           <p className={styles.difficulty__bar}>{difficulty}</p>

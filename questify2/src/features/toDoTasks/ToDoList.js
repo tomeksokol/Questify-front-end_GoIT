@@ -25,7 +25,7 @@ const TodoList = () => {
         category={card.category}
       />
     ) : card.completed ? (
-      <ToDoCompleted id={card.id} title={card.title} />
+      <ToDoCompleted id={card.id} key={card.id} title={card.title} />
     ) : (
       <ToDoTask
         id={card.id}
