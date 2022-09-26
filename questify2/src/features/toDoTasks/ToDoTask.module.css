@@ -1,12 +1,30 @@
+.todo__form {
+    width: 290px;
+    height: 260px;
+    list-style: none;
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
 .todo__item {
     width: 290px;
     height: 260px;
     list-style: none;
     background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
     box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
     border-radius: 10px;
     display: flex;
     justify-content: center;
+}
+
+.todo__item:hover {
+    outline: 0px solid transparent;
+    border-bottom: 1px solid #00D7FF;
 }
 
 .first__section {
@@ -47,8 +65,8 @@
     line-height: 16px;
 }
 
-.task__title{
-font-family: 'HelveticaNeueCyr';
+.task__title {
+    font-family: 'HelveticaNeueCyr';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -57,23 +75,24 @@ font-family: 'HelveticaNeueCyr';
     color: #282828;
 }
 
-.task__date{
+.task__date {
     font-family: 'HelveticaNeueCyr';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 14px;
-text-align: center;
-letter-spacing: 0.02em;
-color: #B9C3C8;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #B9C3C8;
 
 }
 
-.third__section{
+.third__section {
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
 }
+
 .submit__button {
     font-family: 'HelveticaNeueCyr';
     font-style: normal;
@@ -92,8 +111,8 @@ color: #B9C3C8;
 .submit__button:hover,
 .destroy:hover {
     -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .destroy {
@@ -103,8 +122,31 @@ color: #B9C3C8;
     text-decoration: none;
 }
 
+.todo__completed {
+    width: 290px;
+    height: 260px;
+    list-style: none;
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+    border-radius: 10px;
+    background-image: url(../../images/toDoTask/award.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
 
 @media screen and (min-width: 530px) {
+    .todo__form {
+        width: 205px;
+        height: 199px;
+        list-style: none;
+        background: #FFFFFF;
+        box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+        border-radius: 10px;
+    }
+
     .todo__item {
         width: 205px;
         height: 199px;
@@ -112,6 +154,11 @@ color: #B9C3C8;
         background: #FFFFFF;
         box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
         border-radius: 10px;
+    }
+
+    .todo__item:hover {
+        outline: 0px solid transparent;
+        border-bottom: 1px solid #00D7FF;
     }
 
     .input__placeholder {
@@ -150,9 +197,31 @@ color: #B9C3C8;
         background-color: #FFFFFF;
     }
 
+    .todo__completed {
+        width: 205px;
+        height: 199px;
+        list-style: none;
+        background: #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+        border-radius: 10px;
+        background-image: url(../../images/toDoTask/award.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
 }
 
 @media screen and (min-width: 1024px) {
+    .todo__form {
+        width: 205px;
+        height: 199px;
+        list-style: none;
+        background: #FFFFFF;
+        box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+        border-radius: 10px;
+    }
+
     .todo__item {
         width: 205px;
         height: 199px;
@@ -160,6 +229,11 @@ color: #B9C3C8;
         background: #FFFFFF;
         box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
         border-radius: 10px;
+    }
+
+    .todo__item:hover {
+        outline: 0px solid transparent;
+        border-bottom: 1px solid #00D7FF;
     }
 
     .input__placeholder {
@@ -196,6 +270,19 @@ color: #B9C3C8;
         color: #00D7FF;
         border: none;
         background-color: #FFFFFF;
+    }
+
+    .todo__completed {
+        width: 205px;
+        height: 199px;
+        list-style: none;
+        background: #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03), 3px 4px 4px rgba(21, 57, 90, 0.03);
+        border-radius: 10px;
+        background-image: url(../../images/toDoTask/award.png);
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
 }

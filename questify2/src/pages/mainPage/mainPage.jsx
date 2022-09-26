@@ -5,7 +5,6 @@ import Backdrop from "@mui/material/Backdrop";
 import { Navigation } from "../../components/navigation/navigation";
 import { PlusBtn } from "../../components/plusBtn/plusBtn";
 import ToDoForm from "../../features/toDoTasks/ToDoForm";
-import ToDoTask from "../../features/toDoTasks/ToDoTask";
 import ToDoList from "../../features/toDoTasks/ToDoList";
 
 const MainPage = () => {

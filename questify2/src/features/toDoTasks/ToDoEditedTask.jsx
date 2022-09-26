@@ -15,8 +15,10 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 import ClearButton from "../../images/toDoTask/ClearButton";
 import ToDoStar from "../../images/toDoTask/ToDoStar";
+import SaveButton from "../../images/toDoTask/SaveButton";
+import ConfirmButton from "../../images/toDoTask/ConfirmButton";
 
-const ToDoForm = () => {
+const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
   const dispatch = useDispatch();
 
   const inputRef = useRef();
@@ -24,12 +26,13 @@ const ToDoForm = () => {
   const titleId = useRef(nanoid());
 
   const [formValues, setFormValues] = useState({
-    title: "",
-    difficulty: "Easy",
-    category: "Stuff",
-    type: "",
-    date: "",
-    time: "",
+    id: id,
+    title:  title,
+    difficulty: difficulty,
+    category: category,
+    type: "quest",
+    date: date,
+    time: time,
   });
 
   const [value, setValue] = React.useState(dayjs());
@@ -39,16 +42,17 @@ const ToDoForm = () => {
 
     const { title, difficulty, category, type } = formValues;
     const newToDoTask = {
-      id: nanoid(),
+      id: id,
       title: title,
       difficulty: difficulty,
       category: category,
       type: "quest",
-      date: value.format('DD/MM/YYYY'),
+      date: value.format("DD/MM/YYYY"),
       time: `${value.$H}:${value.$m}`,
     };
 
-    dispatch(toDoReducer.actions.addToDoCard(newToDoTask));
+    dispatch(toDoReducer.actions.editToDoCard(newToDoTask));
+    dispatch(toDoReducer.actions.updateEditedCardId(""));
   };
 
   const handleInputValueChange = (event) => {
@@ -62,7 +66,14 @@ const ToDoForm = () => {
     inputRef.current.focus();
   }, []);
 
-  
+  const onConfirm = (id) => {
+    dispatch(toDoReducer.actions.completeToDoCard(id));
+    dispatch(toDoReducer.actions.updateEditedCardId(""));
+  }
+
+    const onDelete = (id) => {
+      dispatch(toDoReducer.actions.deleteToDoCard(id));
+    };
 
   return (
     <ul>
@@ -86,7 +97,7 @@ const ToDoForm = () => {
             </div>
 
             <div className={styles.input__placeholder}>
-              <p>create new quest</p>
+              <p>edit quest</p>
             </div>
 
             <div className={styles.second__section}>
@@ -132,11 +143,14 @@ const ToDoForm = () => {
               </select>
 
               <button type="submit" className={styles.submit__button}>
-                START
+                <SaveButton />
               </button>
 
-              <button className={styles.destroy} /*onClick={onDelete}*/>
+              <button className={styles.destroy} onClick={() => onDelete(id)}>
                 <ClearButton />
+              </button>
+              <button className={styles.destroy} onClick={() => onConfirm(id)}>
+                <ConfirmButton />
               </button>
             </div>
           </div>
@@ -146,4 +160,4 @@ const ToDoForm = () => {
   );
 };
 
-export default ToDoForm;
+export default ToDoEditedTask;

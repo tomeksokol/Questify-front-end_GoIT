@@ -1,26 +1,32 @@
-import { React, useRef } from "react";
+import { React, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ToDoTask from './ToDoTask'
-import { nanoid } from "nanoid";
-
-// import { selectFilteredTodoIds } from "./todosSlice";
+import ToDoEditedTask from "./ToDoEditedTask";
+import ToDoCompleted from "./ToDoCompleted";
 
 const TodoList = () => {
-  const listItemKey = useRef(nanoid());  
   const cards = useSelector((state) => state.toDos.cards);
-//   const todoIds = useSelector(selectFilteredTodoIds);
-//   const loadingStatus = useSelector((state) => state.todos.status);
+  const editedCard = useSelector((state) => state.toDos.editedCardId);
 
-//   if (loadingStatus === "loading") {
-//     return (
-//       <div className="todo-list">
-//         <div className="loader" />
-//       </div>
-//     );
-//   }
 
-  const renderedListItems = cards.map(card => {
-    return (
+  useEffect(() => {
+    // eslint-disable-next-line
+  }, [cards]);
+
+  const renderedListItems = cards.map((card) => {
+    return editedCard === card.id ? (
+      <ToDoEditedTask
+        id={card.id}
+        key={card.id}
+        difficulty={card.difficulty}
+        title={card.title}
+        date={card.date}
+        time={card.time}
+        category={card.category}
+      />
+    ) : card.completed ? (
+      <ToDoCompleted id={card.id} title={card.title} />
+    ) : (
       <ToDoTask
         id={card.id}
         key={card.id}
