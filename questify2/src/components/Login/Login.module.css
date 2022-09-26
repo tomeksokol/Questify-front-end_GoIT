@@ -3,7 +3,7 @@
   height: 100vh;
   background: url(../../images/landing/mobile/landingMB.png) no-repeat,
     url(../../images/landing/mobile/landingMG.png) no-repeat;
-  background-position:  bottom -3% right -5%;
+  background-position: bottom -3% right -5%;
   background-size: contain;
 }
 
@@ -66,7 +66,6 @@ input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
-
 .input::placeholder {
   color: #00d7ff;
 }
@@ -74,8 +73,7 @@ input:-webkit-autofill:focus {
 @media screen and (min-width: 530px) {
   .landing {
     height: 100vh;
-    background: url(../../images/landing/tablet/landingT1.png) no-repeat 100% 0%,
-      url(../../images/landing/tablet/landingT2.png) no-repeat 100% 100%;
+    background: url(../../images/landing/tablet/landingT4.png) no-repeat 100% 0%;
   }
   .position {
     padding-top: 310px;
@@ -99,9 +97,9 @@ input:-webkit-autofill:focus {
 @media screen and (min-width: 1024px) {
   .landing {
     height: 100vh;
-    background: url(../../images/landing/desktop/landingD1.png) no-repeat 100%
-        0%,
-      url(../../images/landing/desktop/landingD2.png) no-repeat 100% 110%;
+    background: url(../../images/landing/desktop/landingD4.png) no-repeat 100%
+      100%;
+    background-size: contain;
   }
   .position {
     padding-top: 195px;

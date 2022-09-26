@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./Login.module.css";
 import sc from "../../utils/Container.module.css";
 import ButtonGo from "../ButtonGo/ButtonGo.jsx";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const Login = () => {
@@ -53,11 +52,7 @@ const Login = () => {
   useEffect(() => {
     if (userRequestStatus === "success") {
       Loading.remove();
-      Notify.success("You are looged in");
-      setTimeout(() => {
-        navigate("/MainPage");
-      }, 2000);
-      //navigate("/MainPage");
+      navigate("/MainPage");
     }
   }, [userRequestStatus, navigate]);
 
@@ -88,7 +83,8 @@ const Login = () => {
                 className={s.input}
                 placeholder="Name"
                 value={formValues.name}
-                //defaultValue="John"
+                minLength="5"
+                //defaultValue="Adam"
                 onChange={handleInputValueChange}></input>
             </div>
             <div className={s.spacer__email}>
@@ -101,7 +97,7 @@ const Login = () => {
                 className={s.input}
                 placeholder="Email"
                 value={formValues.email}
-                //defaultValue="email@mail.com"
+                //defaultValue="adam@mail.com"
                 onChange={handleInputValueChange}></input>
             </div>
             <div className={s.spacer__password}>
@@ -118,7 +114,7 @@ const Login = () => {
                 placeholder="Password"
                 value={formValues.password}
                 minLength="6"
-                //defaultValue="password123"
+                //defaultValue="123456"
                 onChange={handleInputValueChange}></input>
               <ButtonGo />
             </div>
