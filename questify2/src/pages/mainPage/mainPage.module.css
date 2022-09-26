@@ -23,22 +23,21 @@ body {
   mix-blend-mode: multiply;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
+.homepage {
+  background-color: #F2F3F7;
+  height: 100vh;
 
-
-.cards__wrapper{
+}
+.cards__wrapper {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
   color: #282828;
 }
-.cards__wrapper p{
+.cards__wrapper p {
   text-transform: uppercase;
 }
-
-
-
-

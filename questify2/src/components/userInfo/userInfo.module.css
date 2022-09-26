@@ -1,3 +1,4 @@
+
 .username__wrapper{
   display: flex;
   align-items: center;
@@ -9,6 +10,7 @@
   size: 17px;
   letter-spacing: 2%;
   color: #7B8AA4;
+  font-weight: 500;
 }
 
 .challenge__button{
@@ -58,6 +60,8 @@
   text-align: center;
   font-size: 17px;
   background: #3e4e6c;
+  color:#ffffff;
+  font-weight: 500;
 }
 @media screen and (min-width:768px) {
   .username__info{
