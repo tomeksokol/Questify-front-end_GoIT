@@ -1,48 +1,45 @@
 import React from "react";
 import styles from "./mainPage.module.css";
 import { useState } from "react";
-import Backdrop from "@mui/material/Backdrop";
 import { Navigation } from "../../components/navigation/navigation";
 import { PlusBtn } from "../../components/plusBtn/plusBtn";
 import ToDoForm from "../../features/toDoTasks/ToDoForm";
-import ToDoList from "../../features/toDoTasks/ToDoList";
+import TodoList from "../../features/toDoTasks/ToDoList";
+import { useDispatch, useSelector } from "react-redux";
+import { toDoReducer } from "../../features/toDoTasks/ToDoSlice";
+
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  const formStatus=useSelector(state=>state.toDos.isFormOpen)
   const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+  const setFormActive = () => {
+    dispatch(toDoReducer.actions.openForm())
+  }
+
 
   return (
-    <div className={styles.homepage}>
-      <Navigation />
+ 
+      <div className={styles.homepage}>
+        <Navigation />
 
-      <div className={styles.cards__wrapper}>
-        <p>Today</p>
+        <div className={styles.cards__wrapper}>
+          <p>Today</p>
+        </div>
+
+        <div>{formStatus && <ToDoForm />}</div>
+
+        <div>
+          <TodoList />
+        </div>
+
+        <div className={styles.cards__wrapper}>
+          <p>Tomorrow</p>
+        </div>
+
+        <PlusBtn fnt={setFormActive} />
       </div>
 
-      <div>
-        <ToDoForm />
-      </div>
-
-      <div>
-        <ToDoList />
-      </div>
-
-      <div className={styles.cards__wrapper}>
-        <p>Tomorrow</p>
-      </div>
-
-      <PlusBtn fnt={handleToggle} />
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={handleClose}
-      ></Backdrop>
-    </div>
   );
 };
 

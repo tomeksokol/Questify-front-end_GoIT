@@ -16,7 +16,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import ClearButton from "../../images/toDoTask/ClearButton";
 import ToDoStar from "../../images/toDoTask/ToDoStar";
 
-const ToDoForm = () => {
+const ToDoForm = (saveFunction) => {
   const dispatch = useDispatch();
 
   const inputRef = useRef();
@@ -44,11 +44,12 @@ const ToDoForm = () => {
       difficulty: difficulty,
       category: category,
       type: "quest",
-      date: value.format('DD/MM/YYYY'),
+      date: value.format("DD/MM/YYYY"),
       time: `${value.$H}:${value.$m}`,
     };
 
     dispatch(toDoReducer.actions.addToDoCard(newToDoTask));
+    dispatch(toDoReducer.actions.closeForm());
   };
 
   const handleInputValueChange = (event) => {
@@ -61,8 +62,6 @@ const ToDoForm = () => {
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-
-  
 
   return (
     <ul>
@@ -135,7 +134,12 @@ const ToDoForm = () => {
                 START
               </button>
 
-              <button className={styles.destroy} /*onClick={onDelete}*/>
+              <button
+                type="button"
+                className={styles.destroy}
+                onClick={() => dispatch(toDoReducer.actions.closeForm())}
+                /*onClick={onDelete}*/
+              >
                 <ClearButton />
               </button>
             </div>

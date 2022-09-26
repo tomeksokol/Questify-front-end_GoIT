@@ -5,6 +5,7 @@ const initialState = {
   cards: [],
   editedCardId:"",
   status: "idle",
+  isFormOpen:false,
 };
 
 export const toDoReducer = createSlice({
@@ -30,6 +31,12 @@ export const toDoReducer = createSlice({
     updateEditedCardId(state, action) {
       state.editedCardId = action.payload;
     },
+    openForm(state) {
+      state.isFormOpen = true
+    },
+    closeForm(state) {
+      state.isFormOpen = false
+    }
   },
   //   extraReducers: (builder) => {
   //     builder
