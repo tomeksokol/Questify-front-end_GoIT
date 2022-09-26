@@ -11,6 +11,7 @@ import sc from "../../utils/Container.module.css";
 import ButtonGo from "../ButtonGo/ButtonGo.jsx";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { JWT_TOKEN_STORAGE_KEY } from "../../utils/constans.js";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -51,13 +52,14 @@ const Login = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem(JWT_TOKEN_STORAGE_KEY);
     if (userRequestStatus === "success") {
       Loading.remove();
       Notify.success("You are looged in");
       setTimeout(() => {
-        navigate("/MainPage");
+        navigate("/");
       }, 2000);
-      //navigate("/MainPage");
+ 
     }
   }, [userRequestStatus, navigate]);
 

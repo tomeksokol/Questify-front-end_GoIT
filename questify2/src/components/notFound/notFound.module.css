@@ -1,0 +1,16 @@
+.notFound__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    margin-top: 30px;
+}
+.sadIcon{
+display: inline-flex;
+width: 200px;
+height: 200px;
+background-image: url("../../icons/sad.svg");
+background-repeat: no-repeat;
+background-size: contain;
+}
