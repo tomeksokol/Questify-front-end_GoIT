@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserName } from "../../redux/auth/selectors";
 import { logoutUser } from "../../redux/auth/actions";
 import { useNavigate } from "react-router";
-import { USER_NAME } from "../../utils/constans";
+import { USER_NAME, JWT_TOKEN_STORAGE_KEY } from "../../utils/constans";
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
-    navigate("/");
+    localStorage.removeItem(JWT_TOKEN_STORAGE_KEY);
+    navigate("/login");
   };
 
   const userName = useSelector(getUserName) || localStorage.getItem(USER_NAME);
