@@ -24,7 +24,7 @@ const TodoList = () => {
         time={card.time}
         category={card.category}
       />
-    ) : card.completed ? (
+    ) : card.status === 'Complete' ? (
       <ToDoCompleted id={card._id} key={card._id} title={card.title} />
     ) : (
       <ToDoTask

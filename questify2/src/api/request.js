@@ -84,12 +84,21 @@ export const removeToDo = createAsyncThunk(
     const response = await questifyApiClient.delete(
       `/auth/card/?cardId=${cardId}`
     );
-    return response.data.message._id;
+    return response.data;
   }
 );
-export const UpdateToDo = createAsyncThunk("updateInApi", async (cardId) => {
+export const UpdateToDo = createAsyncThunk("updateInApi", async (payload) => {
+  const { cardId, ...data } = payload;
   const response = await questifyApiClient.patch(
-    `/auth/card/?cardId=${cardId}`
+    `/auth/card/?cardId=${cardId}`, data
+  );
+  return response.data;
+});
+export const CompleteToDo = createAsyncThunk("completeInApi", async (payload) => {
+  const { cardId, ...status } = payload;
+  const response = await questifyApiClient.patch(
+    `/auth/card/complete/?cardId=${cardId}`,
+    status
   );
   return response.data;
 });

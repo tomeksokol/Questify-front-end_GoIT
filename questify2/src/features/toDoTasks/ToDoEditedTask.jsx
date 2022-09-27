@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toDoReducer } from "./ToDoSlice";
 import { nanoid } from "nanoid";
 import styles from "./ToDoTask.module.css";
-import { removeToDo, UpdateToDo } from "../../api/request";
+import { removeToDo, UpdateToDo, CompleteToDo } from "../../api/request";
 
 // import * as React from "react";
 import dayjs, { Dayjs } from "dayjs";
@@ -39,6 +39,7 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
   const [value, setValue] = React.useState(dayjs());
 
   const UpdateCardInApi = (payload) => dispatch(UpdateToDo(payload));
+  const CompleteCardInApi = (payload) => dispatch(CompleteToDo(payload));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -55,7 +56,7 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
     };
 
     // dispatch(toDoReducer.actions.editToDoCard(newToDoTask));
-    UpdateCardInApi(newToDoTask);
+    UpdateCardInApi({ ...newToDoTask, cardId: id });
     dispatch(toDoReducer.actions.updateEditedCardId(""));
   };
 
@@ -70,8 +71,9 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
     inputRef.current.focus();
   }, []);
 
-  const onConfirm = (id) => {
-    dispatch(toDoReducer.actions.completeToDoCard(id));
+  const onConfirm = () => {
+    const status = { status: "Complete" };
+    CompleteCardInApi({ ...status, cardId: id });
     dispatch(toDoReducer.actions.updateEditedCardId(""));
   }
 
@@ -153,7 +155,7 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
               <button className={styles.destroy} onClick={() => onDelete(id)}>
                 <ClearButton />
               </button>
-              <button className={styles.destroy} onClick={() => onConfirm(id)}>
+              <button className={styles.destroy} onClick={onConfirm}>
                 <ConfirmButton />
               </button>
             </div>
