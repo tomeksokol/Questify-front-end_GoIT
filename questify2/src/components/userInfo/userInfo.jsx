@@ -11,7 +11,7 @@ export const UserInfo = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
-    navigate("/");
+    navigate("/login");
   };
 
   const userName = useSelector(getUserName) || localStorage.getItem(USER_NAME);
