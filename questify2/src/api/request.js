@@ -3,6 +3,7 @@ import { JWT_TOKEN_STORAGE_KEY, USER_NAME } from "../utils/constans.js";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createUserRequest = async (payload) => {
   try {
@@ -65,3 +66,30 @@ export const logoutCurrentUser = async (payload) => {
     console.log(error.message);
   }
 };
+
+
+//TODOS
+export const fetchToDos = createAsyncThunk("getFromApi", async () => {
+  const response = await questifyApiClient.get("/auth/card");
+  return response.data;
+});
+
+export const saveToDo = createAsyncThunk("postInApi", async (createdCard) => {
+  const response = await questifyApiClient.post("/auth/card", createdCard);
+  return response.data;
+});
+export const removeToDo = createAsyncThunk(
+  "removeFromApi",
+  async (cardId) => {
+    const response = await questifyApiClient.delete(
+      `/auth/card/?cardId=${cardId}`
+    );
+    return response.data.message._id;
+  }
+);
+export const UpdateToDo = createAsyncThunk("updateInApi", async (cardId) => {
+  const response = await questifyApiClient.patch(
+    `/auth/card/?cardId=${cardId}`
+  );
+  return response.data;
+});

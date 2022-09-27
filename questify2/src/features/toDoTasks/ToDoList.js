@@ -14,10 +14,10 @@ const TodoList = () => {
   }, [cards]);
 
   const renderedListItems = cards.map((card) => {
-    return editedCard === card.id ? (
+    return editedCard === card._id ? (
       <ToDoEditedTask
-        id={card.id}
-        key={card.id}
+        id={card._id}
+        key={card._id}
         difficulty={card.difficulty}
         title={card.title}
         date={card.date}
@@ -25,11 +25,11 @@ const TodoList = () => {
         category={card.category}
       />
     ) : card.completed ? (
-      <ToDoCompleted id={card.id} key={card.id} title={card.title} />
+      <ToDoCompleted id={card._id} key={card._id} title={card.title} />
     ) : (
       <ToDoTask
-        id={card.id}
-        key={card.id}
+        id={card._id}
+        key={card._id}
         difficulty={card.difficulty}
         title={card.title}
         date={card.date}
