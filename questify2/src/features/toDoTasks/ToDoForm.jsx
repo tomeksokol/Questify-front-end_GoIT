@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toDoReducer } from "./ToDoSlice";
 import { nanoid } from "nanoid";
 import styles from "./ToDoTask.module.css";
+import { saveToDo } from "../../api/request";
 
 // import * as React from "react";
 import dayjs, { Dayjs } from "dayjs";
@@ -34,12 +35,14 @@ const ToDoForm = (saveFunction) => {
 
   const [value, setValue] = React.useState(dayjs());
 
+  const saveCardInApi = (payload) => dispatch(saveToDo(payload));
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const { title, difficulty, category, type } = formValues;
     const newToDoTask = {
-      id: nanoid(),
+      // id: nanoid(),
       title: title,
       difficulty: difficulty,
       category: category,
@@ -48,8 +51,10 @@ const ToDoForm = (saveFunction) => {
       time: `${value.$H}:${value.$m}`,
     };
 
-    dispatch(toDoReducer.actions.addToDoCard(newToDoTask));
+    //dispatch(toDoReducer.actions.addToDoCard(newToDoTask));
     dispatch(toDoReducer.actions.closeForm());
+
+    saveCardInApi(newToDoTask);
   };
 
   const handleInputValueChange = (event) => {
@@ -64,7 +69,6 @@ const ToDoForm = (saveFunction) => {
   }, []);
 
   return (
-    <ul>
       <li className={styles.todo__form}>
         <form onSubmit={handleSubmit} id={formId.current}>
           <div className="">
@@ -146,7 +150,6 @@ const ToDoForm = (saveFunction) => {
           </div>
         </form>
       </li>
-    </ul>
   );
 };
 
