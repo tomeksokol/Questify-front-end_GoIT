@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./ToDoTask.module.css";
 import { toDoReducer } from "./ToDoSlice";
@@ -6,15 +6,19 @@ import { toDoReducer } from "./ToDoSlice";
 import ToDoStar from "../../images/toDoTask/ToDoStar";
 
 const ToDoTask = ({ id, difficulty, title, date, time, category }) => {
-
   const dispatch = useDispatch();
 
   const handleDoubleClick = (id) => {
     dispatch(toDoReducer.actions.updateEditedCardId(id));
-  }
+  };
+
 
   return (
-    <li className={styles.todo__item} id={id} onDoubleClick={handleDoubleClick(id)}>
+    <li
+      className={styles.todo__item}
+      id={id}
+      onDoubleClick={() => handleDoubleClick(id)}
+    >
       <div className="">
         <div className={styles.first__section}>
           <p className={styles.difficulty__bar}>{difficulty}</p>

@@ -16,12 +16,20 @@ export const toDoReducer = createSlice({
       state.cards = [...state.cards, action.payload];
     },
     deleteToDoCard(state, action) {
-      state.cards = state.cards.filter(
-        (contact) => contact.id !== action.payload
-      );
+      state.cards = state.cards.filter((card) => card.id !== action.payload);
+    },
+    editToDoCard(state, action) {
+      const index = state.cards.findIndex((card) => card.id === action.payload.id);
+      state.cards.splice(index, 1, action.payload);
+      // state.cards[index] = action.payload;
+      // console.log(state.cards[index]);
+    },
+    completeToDoCard(state, action) {
+      const index = state.cards.findIndex((card) => card.id === action.payload);
+      state.cards[index].completed = true;
     },
     updateEditedCardId(state, action) {
-      state.editedCardId = action.payload
+      state.editedCardId = action.payload;
     },
     openForm(state) {
       state.isFormOpen = true
