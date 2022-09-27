@@ -6,15 +6,20 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 export const createUserRequest = async (payload) => {
   try {
-    const { data } = await authenticationApiClient.post(
+    const { data, status } = await authenticationApiClient.post(
       "/auth/register",
       payload
     ); //change to register
-    // console.log(data)
+
     localStorage.setItem(USER_NAME, data.user.name);
     localStorage.setItem(JWT_TOKEN_STORAGE_KEY, data.token);
 
-    //Notify.success("You are loogedin");
+    if (status === 200) {
+      Notify.success("You are looged in");
+    } else if (status === 201) {
+      Notify.success("You are registered and looged in");
+    }
+    
     return data;
   } catch (error) {
     console.log(error.message);
