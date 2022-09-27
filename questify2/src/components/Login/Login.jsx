@@ -10,6 +10,7 @@ import s from "./Login.module.css";
 import sc from "../../utils/Container.module.css";
 import ButtonGo from "../ButtonGo/ButtonGo.jsx";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { JWT_TOKEN_STORAGE_KEY } from "../../utils/constans.js";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const Login = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem(JWT_TOKEN_STORAGE_KEY);
     if (userRequestStatus === "success") {
       Loading.remove();
       navigate("/MainPage");
