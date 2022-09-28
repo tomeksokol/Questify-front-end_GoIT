@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toDoReducer } from "./ToDoSlice";
 import { nanoid } from "nanoid";
 import styles from "./ToDoTask.module.css";
@@ -17,7 +17,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import ClearButton from "../../images/toDoTask/ClearButton";
 import ToDoStar from "../../images/toDoTask/ToDoStar";
 
-const ToDoForm = (saveFunction) => {
+const ToDoForm = () => {
   const dispatch = useDispatch();
 
   const inputRef = useRef();
