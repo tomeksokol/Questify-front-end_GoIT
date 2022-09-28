@@ -18,6 +18,7 @@ import ClearButton from "../../images/toDoTask/ClearButton";
 import ToDoStar from "../../images/toDoTask/ToDoStar";
 import SaveButton from "../../images/toDoTask/SaveButton";
 import ConfirmButton from "../../images/toDoTask/ConfirmButton";
+import { DeleteTaskModal } from "../../components/deleteQuestModal/DeleteQuestModal";
 
 const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
 
   const [formValues, setFormValues] = useState({
     id: id,
-    title:  title,
+    title: title,
     difficulty: difficulty,
     category: category,
     type: "quest",
@@ -75,12 +76,14 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
     const status = { status: "Complete" };
     CompleteCardInApi({ ...status, cardId: id });
     dispatch(toDoReducer.actions.updateEditedCardId(""));
-  }
+  };
 
-    const onDelete = (payload) => {
-      // dispatch(toDoReducer.actions.deleteToDoCard(id));
-      dispatch(removeToDo(payload));
-    };
+  const onDelete = (id) => {
+    dispatch(toDoReducer.actions.deleteToDoCard(id));
+    dispatch(toDoReducer.actions.closeModal());
+  };
+  const modalStatus = useSelector((state) => state.toDos.isModalOpen);
+
 
   return (
       <li className={styles.todo__form}>
@@ -152,12 +155,29 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
                 <SaveButton />
               </button>
 
-              <button className={styles.destroy} onClick={() => onDelete(id)}>
+              {/* <button className={styles.destroy} onClick={() => onDelete(id)}>
+                <ClearButton />
+              </button> */}
+              <button
+                className={styles.destroy}
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(toDoReducer.actions.openModal());
+                }}
+              >
                 <ClearButton />
               </button>
               <button className={styles.destroy} onClick={onConfirm}>
                 <ConfirmButton />
               </button>
+              {modalStatus && (
+                <DeleteTaskModal
+                  cancelFn={() => dispatch(toDoReducer.actions.closeModal())}
+                  deleteFn={() => {
+                    onDelete(id);
+                  }}
+                />
+              )}
             </div>
           </div>
         </form>
