@@ -14,7 +14,12 @@ const MainPage = () => {
   const setFormActive = () => {
     dispatch(toDoReducer.actions.openForm());
   };
+  const getCardsFromApi = () => dispatch(fetchToDos());
 
+  useEffect(()=>{
+    getCardsFromApi();
+  },[]);
+  
 return (
     <div className={styles.homepage}>
       <Navigation />
