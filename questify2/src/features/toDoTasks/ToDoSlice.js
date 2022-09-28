@@ -69,7 +69,7 @@ export const toDoReducer = createSlice({
           state.status = "loading";
         })
         .addCase(removeToDo.fulfilled, (state, action) => {
-          // console.log(action.payload);
+          console.log(action.payload);
           state.cards = state.cards.filter(
             (card) => card._id !== action.payload._id
           );
