@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toDoReducer } from "./ToDoSlice";
 import { nanoid } from "nanoid";
 import styles from "./ToDoTask.module.css";
+import { removeToDo, UpdateToDo, CompleteToDo } from "../../api/request";
 
 // import * as React from "react";
 import dayjs, { Dayjs } from "dayjs";
@@ -38,12 +39,15 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
 
   const [value, setValue] = React.useState(dayjs());
 
+  const UpdateCardInApi = (payload) => dispatch(UpdateToDo(payload));
+  const CompleteCardInApi = (payload) => dispatch(CompleteToDo(payload));
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const { title, difficulty, category, type } = formValues;
     const newToDoTask = {
-      id: id,
+      // id: id,
       title: title,
       difficulty: difficulty,
       category: category,
@@ -52,7 +56,8 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
       time: `${value.$H}:${value.$m}`,
     };
 
-    dispatch(toDoReducer.actions.editToDoCard(newToDoTask));
+    // dispatch(toDoReducer.actions.editToDoCard(newToDoTask));
+    UpdateCardInApi({ ...newToDoTask, cardId: id });
     dispatch(toDoReducer.actions.updateEditedCardId(""));
   };
 
@@ -67,8 +72,9 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
     inputRef.current.focus();
   }, []);
 
-  const onConfirm = (id) => {
-    dispatch(toDoReducer.actions.completeToDoCard(id));
+  const onConfirm = () => {
+    const status = { status: "Complete" };
+    CompleteCardInApi({ ...status, cardId: id });
     dispatch(toDoReducer.actions.updateEditedCardId(""));
   };
 
@@ -78,8 +84,8 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
   };
   const modalStatus = useSelector((state) => state.toDos.isModalOpen);
 
+
   return (
-    <ul>
       <li className={styles.todo__form}>
         <form onSubmit={handleSubmit} id={formId.current}>
           <div className="">
@@ -161,7 +167,7 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
               >
                 <ClearButton />
               </button>
-              <button className={styles.destroy} onClick={() => onConfirm(id)}>
+              <button className={styles.destroy} onClick={onConfirm}>
                 <ConfirmButton />
               </button>
               {modalStatus && (
@@ -176,7 +182,6 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
           </div>
         </form>
       </li>
-    </ul>
   );
 };
 
