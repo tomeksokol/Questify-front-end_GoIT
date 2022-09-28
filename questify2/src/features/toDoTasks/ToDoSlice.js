@@ -5,7 +5,8 @@ const initialState = {
   cards: [],
   editedCardId:"",
   status: "idle",
-  isFormOpen:false,
+  isFormOpen: false,
+  isModalOpen:false,
 };
 
 export const toDoReducer = createSlice({
@@ -36,7 +37,14 @@ export const toDoReducer = createSlice({
     },
     closeForm(state) {
       state.isFormOpen = false
+    },
+    openModal(state) {
+      state.isModalOpen = true;
+    },
+    closeModal(state) {
+      state.isModalOpen = false;
     }
+
   },
   //   extraReducers: (builder) => {
   //     builder

@@ -8,38 +8,18 @@ import TodoList from "../../features/toDoTasks/ToDoList";
 import { useDispatch, useSelector } from "react-redux";
 import { toDoReducer } from "../../features/toDoTasks/ToDoSlice";
 
-
 const MainPage = () => {
   const dispatch = useDispatch();
-  const formStatus=useSelector(state=>state.toDos.isFormOpen)
-  const [open, setOpen] = useState(false);
   const setFormActive = () => {
-    dispatch(toDoReducer.actions.openForm())
-  }
-
+    dispatch(toDoReducer.actions.openForm());
+  };
 
   return (
- 
-      <div className={styles.homepage}>
-        <Navigation />
-
-        <div className={styles.cards__wrapper}>
-          <p>Today</p>
-        </div>
-
-        <div>{formStatus && <ToDoForm />}</div>
-
-        <div>
-          <TodoList />
-        </div>
-
-        <div className={styles.cards__wrapper}>
-          <p>Tomorrow</p>
-        </div>
-
-        <PlusBtn fnt={setFormActive} />
-      </div>
-
+    <div className={styles.homepage}>
+      <Navigation />
+      <TodoList />
+      <PlusBtn fnt={setFormActive} />
+    </div>
   );
 };
 
