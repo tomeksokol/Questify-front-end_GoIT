@@ -1,14 +1,14 @@
 import { React } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./ToDoTask.module.css";
-import { toDoReducer } from "./ToDoSlice";
+import { removeToDo } from "../../api/request";
 
 
 const ToDoCompleted = ({id, title}) => {
   const dispatch = useDispatch();
 
-  const onDelete = (id) => {
-    dispatch(toDoReducer.actions.deleteToDoCard(id));
+  const onDelete = (payload) => {
+    dispatch(removeToDo(payload));
   };
 
   return (

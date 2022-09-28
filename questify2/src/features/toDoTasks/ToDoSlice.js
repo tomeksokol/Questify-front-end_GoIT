@@ -19,22 +19,20 @@ export const toDoReducer = createSlice({
   name: "toDos",
   initialState,
   reducers: {
-    addToDoCard(state, action) {
-      state.cards = [...state.cards, action.payload];
-    },
-    deleteToDoCard(state, action) {
-      state.cards = state.cards.filter((card) => card.id !== action.payload);
-    },
-    editToDoCard(state, action) {
-      const index = state.cards.findIndex((card) => card.id === action.payload.id);
-      state.cards.splice(index, 1, action.payload);
-      // state.cards[index] = action.payload;
-      // console.log(state.cards[index]);
-    },
-    completeToDoCard(state, action) {
-      const index = state.cards.findIndex((card) => card.id === action.payload);
-      state.cards[index].completed = true;
-    },
+    // addToDoCard(state, action) {
+    //   state.cards = [...state.cards, action.payload];
+    // },
+    // deleteToDoCard(state, action) {
+    //   state.cards = state.cards.filter((card) => card.id !== action.payload);
+    // },
+    // editToDoCard(state, action) {
+    //   const index = state.cards.findIndex((card) => card.id === action.payload.id);
+    //   state.cards.splice(index, 1, action.payload);
+    // },
+    // completeToDoCard(state, action) {
+    //   const index = state.cards.findIndex((card) => card.id === action.payload);
+    //   state.cards[index].completed = true;
+    // },
     updateEditedCardId(state, action) {
       state.editedCardId = action.payload;
     },

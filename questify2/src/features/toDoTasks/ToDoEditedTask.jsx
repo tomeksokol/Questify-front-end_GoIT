@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 import styles from "./ToDoTask.module.css";
 import { removeToDo, UpdateToDo, CompleteToDo } from "../../api/request";
 
-// import * as React from "react";
+
 import dayjs, { Dayjs } from "dayjs";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -47,7 +47,6 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
 
     const { title, difficulty, category, type } = formValues;
     const newToDoTask = {
-      // id: id,
       title: title,
       difficulty: difficulty,
       category: category,
@@ -78,10 +77,11 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
     dispatch(toDoReducer.actions.updateEditedCardId(""));
   };
 
-  const onDelete = (id) => {
-    dispatch(toDoReducer.actions.deleteToDoCard(id));
+  const onDelete = (payload) => {
+    dispatch(removeToDo(payload));
     dispatch(toDoReducer.actions.closeModal());
   };
+  
   const modalStatus = useSelector((state) => state.toDos.isModalOpen);
 
 
