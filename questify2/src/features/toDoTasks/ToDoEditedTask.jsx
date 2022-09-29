@@ -89,7 +89,7 @@ const ToDoEditedTask = ({ id, difficulty, title, date, time, category }) => {
 
   return (
     <li className={styles.questsWrapper}>
-      <form className={styles.form} onSubmit={handleSubmit} id={formId.current}>
+      <form className={`${styles.form} ${styles.grow}`} onSubmit={handleSubmit} id={formId.current}>
         <div className={styles.header__wrapper}>
           <div className={styles.level__wrapper}>
             <button className={styles.level__button} type="button">
