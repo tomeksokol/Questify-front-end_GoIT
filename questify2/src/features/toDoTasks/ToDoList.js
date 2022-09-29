@@ -5,7 +5,8 @@ import ToDoForm from "./ToDoForm";
 import ToDoEditedTask from "./ToDoEditedTask";
 import ToDoCompleted from "./ToDoCompleted";
 import { formattedToday, formattedTomorrow } from "../../utils/date";
-import styles from "./ToDoTask.module.css";
+import styles from "./ToDoList.module.css";
+
 const TodoList = () => {
   const cards = useSelector((state) => state.toDos.cards);
   const editedCard = useSelector((state) => state.toDos.editedCardId);
@@ -25,7 +26,7 @@ const TodoList = () => {
         time={card.time}
         category={card.category}
       />
-    ) : card.status === 'Complete' ? (
+    ) : card.status === "Complete" ? (
       <ToDoCompleted id={card._id} key={card._id} title={card.title} />
     ) : (
       <ToDoTask
@@ -52,7 +53,7 @@ const TodoList = () => {
   );
   const formStatus = useSelector((state) => state.toDos.isFormOpen);
 
-  // return <ul className="todo-list">{renderedListItems}</ul>;
+  // return <ul className={styles.CardList}>{renderedListItems}</ul>;
   return (
     <div>
       {" "}
@@ -63,19 +64,19 @@ const TodoList = () => {
             <div>
               <p>Today</p>
 
-              <ul>{questsToday}</ul>
+              <ul className={styles.CardList}>{questsToday}</ul>
             </div>
           )}
           {questsTomorrow.length > 0 && (
             <div>
               <p>Tomorrow</p>
-              <ul> {questsTomorrow}</ul>
+              <ul className={styles.CardList}> {questsTomorrow}</ul>
             </div>
           )}
           {questsOther.length > 0 && (
             <div>
               <p>Next days</p>
-              <ul>{questsOther}</ul>
+              <ul className={styles.CardList}>{questsOther}</ul>
             </div>
           )}
         </div>

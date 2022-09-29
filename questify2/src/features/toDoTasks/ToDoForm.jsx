@@ -3,7 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toDoReducer } from "./ToDoSlice";
 import { nanoid } from "nanoid";
-import styles from "./ToDoTask.module.css";
+import styles from "./ToDoForm.module.css";
+import ellipseBlue from "../../icons/ellipse-blue.svg";
+import ellipseRed from "../../icons/ellipse-red.svg";
+import ellipseGreen from "../../icons/ellipse-green.svg";
+import starIcon from "../../icons/star.svg";
 import { saveToDo } from "../../api/request";
 
 // import * as React from "react";
@@ -69,63 +73,112 @@ const ToDoForm = () => {
   }, []);
 
   return (
-      <li className={styles.todo__form}>
-        <form onSubmit={handleSubmit} id={formId.current}>
-          <div className="">
-            <div className={styles.first__section}>
+    <li className={styles.questsWrapper}>
+      <form className={styles.form} onSubmit={handleSubmit} id={formId.current}>
+        <div className={styles.header__wrapper}>
+          <div className={styles.level__wrapper}>
+            <button className={styles.level__button} type="button">
+              {formValues.difficulty === "Hard" ? (
+                <img
+                  className={styles.ellipse}
+                  src={ellipseRed}
+                  alt="star"
+                  tabIndex="1"></img>
+              ) : formValues.difficulty === "Normal" ? (
+                <img
+                  className={styles.ellipse}
+                  src={ellipseGreen}
+                  alt="star"
+                  tabIndex="1"></img>
+              ) : formValues.difficulty === "Easy" ? (
+                <img
+                  className={styles.ellipse}
+                  src={ellipseBlue}
+                  alt="star"
+                  tabIndex="1"></img>
+              ) : (
+                <></>
+              )}
+            </button>
+
+            <select
+              className={styles.level__select}
+              name="difficulty"
+              value={formValues.difficulty}
+              onChange={handleInputValueChange}
+              form={formId.current}>
+              <option value="Easy">Easy</option>
+              <option value="Normal">Normal</option>
+              <option value="Hard">Hard</option>
+            </select>
+            <img
+              className={styles.star__icon}
+              src={starIcon}
+              alt="star"
+              tabIndex="1"></img>
+          </div>
+        </div>
+
+        <div className={styles.TitleWrapper}>
+          <h2 className={styles.form__title}>CREATE A NEW QUEST</h2>
+          <input
+            ref={inputRef}
+            id={titleId.current}
+            name="title"
+            value={formValues.title}
+            onChange={handleInputValueChange}
+            className={styles.form__input}
+            required
+          />
+          <div className={styles.date__wrapper}>
+            <div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Stack spacing={3}>
+                  <DateTimePicker
+                    name="date"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        id="standard-basic"
+                        variant="standard"
+                        label="Date "
+                        margin="normal"
+                        {...params}
+                      />
+                    )}
+                  />
+                </Stack>
+              </LocalizationProvider>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.bottom__wrapper}>
+          <div className={styles.category__wrapper}>
+            <div>
               <select
-                className={styles.difficulty__bar}
-                name="difficulty"
-                value={formValues.difficulty}
-                onChange={handleInputValueChange}
-                form={formId.current}
-              >
-                <option value="Easy">Easy</option>
-                <option value="Normal">Normal</option>
-                <option value="Hard">Hard</option>
-              </select>
-
-              <ToDoStar />
-            </div>
-
-            <div className={styles.input__placeholder}>
-              <p>create new quest</p>
-            </div>
-
-            <div className={styles.second__section}>
-              <input
-                ref={inputRef}
-                id={titleId.current}
-                name="title"
-                value={formValues.title}
-                onChange={handleInputValueChange}
-                className={styles.input__field}
-                required
-              />
-            </div>
-
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <Stack spacing={3}>
-                <DateTimePicker
-                  label="Date&Time picker"
-                  name="date"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </Stack>
-            </LocalizationProvider>
-
-            <div className={styles.third__section}>
-              <select
-                className="categoryPicker"
                 name="category"
                 value={formValues.category}
                 onChange={handleInputValueChange}
                 form={formId.current}
-              >
+                className={
+                  formValues.category === "Stuff"
+                    ? `${styles.category__select} ${styles.stuff}`
+                    : formValues.category === "Work"
+                    ? `${styles.category__select} ${styles.work}`
+                    : formValues.category === "Family"
+                    ? `${styles.category__select} ${styles.family}`
+                    : formValues.category === "Health"
+                    ? `${styles.category__select} ${styles.health}`
+                    : formValues.category === "Learning"
+                    ? `${styles.category__select} ${styles.learning}`
+                    : formValues.category === "Leisure"
+                    ? `${styles.category__select} ${styles.leisure}`
+                    : styles.category__select
+                }>
                 <option value="Stuff">Stuff</option>
                 <option value="Family">Family</option>
                 <option value="Health">Health</option>
@@ -133,23 +186,23 @@ const ToDoForm = () => {
                 <option value="Leisure">Leisure</option>
                 <option value="Work">Work</option>
               </select>
-
-              <button type="submit" className={styles.submit__button}>
-                START
-              </button>
-
-              <button
-                type="button"
-                className={styles.destroy}
-                onClick={() => dispatch(toDoReducer.actions.closeForm())}
-                /*onClick={onDelete}*/
-              >
-                <ClearButton />
-              </button>
             </div>
           </div>
-        </form>
-      </li>
+          <div className={styles.button__wrapper}>
+            <button
+              className={styles.button__cancel}
+              onClick={() => dispatch(toDoReducer.actions.closeForm())}
+              /*onClick={onDelete}*/
+            >
+              <ClearButton />
+            </button>
+            <button className={styles.button__create} type="submit">
+              CREATE
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
   );
 };
 
