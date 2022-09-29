@@ -51,8 +51,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem(JWT_TOKEN_STORAGE_KEY);
-    if (token) {
+    //const token = localStorage.getItem(JWT_TOKEN_STORAGE_KEY);
+    if (userRequestStatus === 'success') {
       Loading.remove();
       navigate("/");
     }

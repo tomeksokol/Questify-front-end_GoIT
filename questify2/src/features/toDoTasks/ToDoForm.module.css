@@ -1,3 +1,7 @@
+li {
+  list-style: none;
+}
+
 .questsWrapper {
   margin: 15px;
 }
