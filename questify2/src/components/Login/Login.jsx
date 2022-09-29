@@ -52,7 +52,7 @@ const Login = () => {
 
   useEffect(() => {
     //const token = localStorage.getItem(JWT_TOKEN_STORAGE_KEY);
-    if (userRequestStatus === 'success') {
+    if (userRequestStatus === "success") {
       Loading.remove();
       navigate("/");
     }
@@ -115,7 +115,7 @@ const Login = () => {
                 className={s.input}
                 placeholder="Password"
                 value={formValues.password}
-                minLength="6"
+                minLength="4"
                 //defaultValue="123456"
                 onChange={handleInputValueChange}></input>
               <ButtonGo />
