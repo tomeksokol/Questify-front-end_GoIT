@@ -1,0 +1,16 @@
+.empty__wrapper{
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.empty__image{
+    width: 30vh;
+    height: 30vh;
+}
+.empty__wrapper p{
+    font-weight: 700;
+    font-size: 26px;
+}

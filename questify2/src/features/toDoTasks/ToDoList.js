@@ -6,11 +6,13 @@ import ToDoEditedTask from "./ToDoEditedTask";
 import ToDoCompleted from "./ToDoCompleted";
 import { formattedToday, formattedTomorrow } from "../../utils/date";
 import styles from "./ToDoList.module.css";
+import  {EmptyState}  from "../../components/EmptyState/EmptyState";
 
 const TodoList = () => {
   const cards = useSelector((state) => state.toDos.cards);
   const editedCard = useSelector((state) => state.toDos.editedCardId);
 
+  
   useEffect(() => {
     // eslint-disable-next-line
   }, [cards]);
@@ -27,7 +29,12 @@ const TodoList = () => {
         category={card.category}
       />
     ) : card.status === "Complete" ? (
-      <ToDoCompleted id={card._id} key={card._id} title={card.title} />
+      <ToDoCompleted
+        id={card._id}
+        key={card._id}
+        title={card.title}
+        date={card.date}
+      />
     ) : (
       <ToDoTask
         id={card._id}
@@ -48,11 +55,15 @@ const TodoList = () => {
   );
   const questsOther = renderedListItems.filter(
     (quest) =>
-      quest.props.date != formattedToday &&
-      quest.props.date != formattedTomorrow
+      quest.props.date !== formattedToday &&
+      quest.props.date !== formattedTomorrow
   );
   const formStatus = useSelector((state) => state.toDos.isFormOpen);
-
+  // console.log(questsTomorrow);
+  // console.log(formattedTomorrow)
+  // console.log(formattedToday)
+  // console.log(questsOther)
+  // console.log(questsToday)
   // return <ul className={styles.CardList}>{renderedListItems}</ul>;
   return (
     <div>
@@ -83,7 +94,7 @@ const TodoList = () => {
       ) : (
         <div>
           {!formStatus && (
-            <p className={styles.info}>You don't have any added quests yet!</p>
+         <EmptyState/>
           )}
         </div>
       )}

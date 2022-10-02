@@ -47,6 +47,9 @@ export const toDoReducer = createSlice({
     },
     closeModal(state) {
       state.isModalOpen = false;
+    },
+    cleanCards(state) {
+      state.cards=[]
     }
 
   },
@@ -57,7 +60,7 @@ export const toDoReducer = createSlice({
           state.status = "loading";
         })
         .addCase(fetchToDos.fulfilled, (state, action) => {
-          state.cards = [...action.payload.cards];
+          state.cards = [...action?.payload?.cards];
           state.status = "idle";
         })
 
