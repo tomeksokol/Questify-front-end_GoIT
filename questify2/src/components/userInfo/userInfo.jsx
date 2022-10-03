@@ -6,11 +6,13 @@ import { getUserName } from "../../redux/auth/selectors";
 import { logoutUser } from "../../redux/auth/actions";
 import { useNavigate } from "react-router";
 import { USER_NAME, JWT_TOKEN_STORAGE_KEY } from "../../utils/constans";
+import { toDoReducer } from "../../features/toDoTasks/ToDoSlice";
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logoutUser());
+    dispatch(toDoReducer.actions.cleanCards())
     localStorage.removeItem(JWT_TOKEN_STORAGE_KEY);
     navigate("/login");
   };
