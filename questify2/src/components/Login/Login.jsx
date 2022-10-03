@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
-
 import { createUser } from "../../redux/auth/actions.js";
 import { selectUserRequestStatus } from "../../redux/auth/selectors.js";
 import { useDispatch, useSelector } from "react-redux";
-
 import s from "./Login.module.css";
 import sc from "../../utils/Container.module.css";
 import ButtonGo from "../ButtonGo/ButtonGo.jsx";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
-import { JWT_TOKEN_STORAGE_KEY } from "../../utils/constans.js";
 
 const Login = () => {
   const dispatch = useDispatch();
