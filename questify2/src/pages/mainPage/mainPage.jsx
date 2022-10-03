@@ -23,8 +23,10 @@ const MainPage = () => {
 return (
   <div className={styles.homepage}>
     <Navigation />
-    <TodoList />
-    <PlusBtn fnt={setFormActive} />
+    <div className={styles.container}>
+      <TodoList />
+      <PlusBtn fnt={setFormActive} />
+    </div>
   </div>
 );
 };

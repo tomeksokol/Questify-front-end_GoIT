@@ -18,7 +18,8 @@ const ToDoTask = ({ id, difficulty, title, date, time, category }) => {
     <li
       className={styles.CardItem}
       id={id}
-      onDoubleClick={() => handleDoubleClick(id)}>
+      onDoubleClick={() => handleDoubleClick(id)}
+    >
       <div className={styles.header__wrapper}>
         <div className={styles.level__wrapper}>
           <button className={styles.level__button} type="button">
@@ -27,29 +28,38 @@ const ToDoTask = ({ id, difficulty, title, date, time, category }) => {
                 className={styles.ellipse}
                 src={ellipseRed}
                 alt="star"
-                tabIndex="1"></img>
+                tabIndex="1"
+              ></img>
             ) : difficulty === "Normal" ? (
               <img
                 className={styles.ellipse}
                 src={ellipseGreen}
                 alt="star"
-                tabIndex="1"></img>
+                tabIndex="1"
+              ></img>
             ) : difficulty === "Easy" ? (
               <img
                 className={styles.ellipse}
                 src={ellipseBlue}
                 alt="star"
-                tabIndex="1"></img>
+                tabIndex="1"
+              ></img>
             ) : (
               <></>
             )}
           </button>
           <div className={styles.level__select}>{difficulty}</div>
-          <img
-            className={styles.star__icon}
-            src={starIcon}
-            alt="star"
-            tabIndex="1"></img>
+          <button
+            className={styles.star__button}
+            onClick={() => handleDoubleClick(id)}
+          >
+            <img
+              className={styles.star__icon}
+              src={starIcon}
+              alt="star"
+              tabIndex="1"
+            ></img>
+          </button>
         </div>
       </div>
 
@@ -76,7 +86,8 @@ const ToDoTask = ({ id, difficulty, title, date, time, category }) => {
               : category === "Leisure"
               ? `${styles.category__select} ${styles.leisure}`
               : styles.category__select
-          }>
+          }
+        >
           {category}
         </div>
       </div>

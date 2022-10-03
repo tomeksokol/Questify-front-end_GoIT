@@ -61,6 +61,22 @@ li {
   text-overflow: ellipsis;
 }
 
+.completed__button {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+    overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+}
+
+.completed__button:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
 .continue__button {
   border: none;
   background-color: transparent;

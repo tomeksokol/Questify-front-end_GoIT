@@ -12,7 +12,8 @@ const initialState = {
   editedCardId:"",
   status: "idle",
   isFormOpen: false,
-  isModalOpen:false,
+  isModalOpen: false,
+  isTaskNameShown: false,
 };
 
 export const toDoReducer = createSlice({
@@ -50,7 +51,13 @@ export const toDoReducer = createSlice({
     },
     cleanCards(state) {
       state.cards=[]
-    }
+    },
+    openTaskName(state) {
+      state.isTaskNameShown = true;
+    },
+    closeTaskName(state) {
+      state.isTaskNameShown = false;
+    },
 
   },
     extraReducers: (builder) => {
