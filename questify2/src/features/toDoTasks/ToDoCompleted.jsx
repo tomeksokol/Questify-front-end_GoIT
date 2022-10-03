@@ -12,14 +12,20 @@ const ToDoCompleted = ({id, title}) => {
   };
 
   return (
-    <li className={styles.todo__completed} id={id}>
-      <div className={styles.completed}>
-        <div className={styles.second__section}>
-          <p className={styles.task__title}>COMPLETED: {title}</p>
+    <li className={styles.CardItem} id={id}>
+      <div className={""}>
+        <div className={""}>
+          <p className={styles.completed__upper}>
+            <div className={styles.completed__name}>COMPLETED:</div>
+            <div className={styles.completed__title}>{title}</div>
+          </p>
         </div>
 
-        <button className={styles.destroy} onClick={() => onDelete(id)}>
-          <p>Continue</p>
+        <button
+          className={styles.continue__button}
+          onClick={() => onDelete(id)}
+        >
+          <p className={styles.continue__text}>Continue</p>
         </button>
       </div>
     </li>
