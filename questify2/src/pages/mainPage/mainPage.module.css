@@ -20,8 +20,7 @@ p {
 }
 
 body {
-  mix-blend-mode: multiply;
-  background: #F2F3F7
+  background: #F2F3F7;
 }
 
 a {
@@ -31,8 +30,13 @@ a {
 .homepage {
   background-color: #F2F3F7;
   height: 100vh;
-
 }
+
+.container{
+  padding-left: 15px;
+  padding-left: 15px;
+}
+
 .cards__wrapper {
   margin-left: 20px;
   margin-right: 20px;
@@ -42,3 +46,4 @@ a {
 .cards__wrapper p {
   text-transform: uppercase;
 }
+
