@@ -1,9 +1,9 @@
 import { React } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, /*useSelector*/ } from "react-redux";
 import styles from "./ToDoCompleted.module.css";
 import { removeToDo } from "../../api/request";
-import CompleteQuestModal from "../../components/CompleteQuestModal/CompleteQuestModal";
-import { toDoReducer } from "./ToDoSlice";
+// import CompleteQuestModal from "../../components/CompleteQuestModal/CompleteQuestModal";
+// import { toDoReducer } from "./ToDoSlice";
 
 
 const ToDoCompleted = ({id, title}) => {
