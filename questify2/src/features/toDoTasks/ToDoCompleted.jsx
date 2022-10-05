@@ -9,7 +9,7 @@ import { toDoReducer } from "./ToDoSlice";
 const ToDoCompleted = ({id, title}) => {
   const dispatch = useDispatch();
 
-  const modalStatus = useSelector((state) => state.toDos.isTaskNameShown);
+  // const modalStatus = useSelector((state) => state.toDos.isTaskNameShown);
 
   const onDelete = (payload) => {
     dispatch(removeToDo(payload));
@@ -21,15 +21,15 @@ const ToDoCompleted = ({id, title}) => {
         <div className={""}>
           <h1 className={styles.completed__upper}>
             <div className={styles.completed__name}>COMPLETED:</div>
-            <button
+            {/* <button
               className={styles.completed__button}
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(toDoReducer.actions.openTaskName());
               }}
-            >
-              <div className={styles.completed__title}>{title}</div>
-            </button>
+            > */}
+              <div title={ title} className={styles.completed__title}>{title}</div>
+            {/* </button> */}
           </h1>
         </div>
 
@@ -40,12 +40,12 @@ const ToDoCompleted = ({id, title}) => {
           <p className={styles.continue__text}>Continue</p>
         </button>
 
-        {modalStatus && (
+        {/* {modalStatus && (
           <CompleteQuestModal
             title={title}
             handleClose={() => dispatch(toDoReducer.actions.closeTaskName())}
           />
-        )}
+        )} */}
       </div>
     </li>
   );
