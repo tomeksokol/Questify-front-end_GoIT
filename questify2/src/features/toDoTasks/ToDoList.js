@@ -6,13 +6,12 @@ import ToDoEditedTask from "./ToDoEditedTask";
 import ToDoCompleted from "./ToDoCompleted";
 import { formattedToday, formattedTomorrow } from "../../utils/date";
 import styles from "./ToDoList.module.css";
-import  {EmptyState}  from "../../components/EmptyState/EmptyState";
+import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 const TodoList = () => {
   const cards = useSelector((state) => state.toDos.cards);
   const editedCard = useSelector((state) => state.toDos.editedCardId);
 
-  
   useEffect(() => {
     // eslint-disable-next-line
   }, [cards]);
@@ -66,9 +65,9 @@ const TodoList = () => {
   // console.log(questsToday)
   // return <ul className={styles.CardList}>{renderedListItems}</ul>;
   return (
-    <div className={styles.quests__wrapper}>
+    <div>
       {" "}
-      <div>{formStatus && <ToDoForm />}</div>
+      <div className={styles.quests__wrapper}>{formStatus && <ToDoForm />}</div>
       {cards.length > 0 ? (
         <div className={styles.quests__cards}>
           {questsToday.length > 0 && (
@@ -92,7 +91,9 @@ const TodoList = () => {
           )}
         </div>
       ) : (
-        <div>{!formStatus && <EmptyState />}</div>
+        <div className={styles.empty__wrapper}>
+          {!formStatus && <EmptyState />}
+        </div>
       )}
     </div>
   );

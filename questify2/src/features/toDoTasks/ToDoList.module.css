@@ -9,13 +9,13 @@
   margin-top: 30px;
   font-size: 22px;
 }
-.quests__wrapper{
+.quests__wrapper {
   margin-top: 25px;
   display: flex;
   margin-left: 20px;
   margin-right: 20px;
   background-color:#F2F3F7;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 .quests__wrapper p{
@@ -24,8 +24,20 @@
   font-weight: 400;
   color:#282828;
 }
+
+.empty__wrapper {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 @media screen and (max-width: 530px) {
   .CardList {
     padding-left: 30px;
+  }
+  .quests__wrapper{
+    justify-content: center;
   }
 }

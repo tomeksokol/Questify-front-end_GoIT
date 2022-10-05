@@ -1,10 +1,11 @@
 import React from 'react';
 import Login from '../../components/Login/Login';
+import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
 
   return (
-    <main>
+    <main className={styles.body}>
       <Login />
     </main>
   );
