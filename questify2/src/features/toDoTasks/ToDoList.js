@@ -66,11 +66,11 @@ const TodoList = () => {
   // console.log(questsToday)
   // return <ul className={styles.CardList}>{renderedListItems}</ul>;
   return (
-    <div>
+    <div className={styles.quests__wrapper}>
       {" "}
       <div>{formStatus && <ToDoForm />}</div>
       {cards.length > 0 ? (
-        <div>
+        <div className={styles.quests__cards}>
           {questsToday.length > 0 && (
             <div>
               <p>Today</p>
@@ -79,24 +79,20 @@ const TodoList = () => {
             </div>
           )}
           {questsTomorrow.length > 0 && (
-            <div>
+            <div className={styles.quests__cards}>
               <p>Tomorrow</p>
               <ul className={styles.CardList}> {questsTomorrow}</ul>
             </div>
           )}
           {questsOther.length > 0 && (
-            <div>
+            <div className={styles.quests__cards}>
               <p>Next days</p>
               <ul className={styles.CardList}>{questsOther}</ul>
             </div>
           )}
         </div>
       ) : (
-        <div>
-          {!formStatus && (
-         <EmptyState/>
-          )}
-        </div>
+        <div>{!formStatus && <EmptyState />}</div>
       )}
     </div>
   );
