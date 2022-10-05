@@ -9,7 +9,7 @@
   margin-top: 30px;
   font-size: 22px;
 }
-.quests__wrapper{
+.quests__wrapper {
   margin-top: 25px;
   display: flex;
   margin-left: 20px;
@@ -23,6 +23,15 @@
   line-height: 15px;
   font-weight: 400;
   color:#282828;
+}
+
+.empty__wrapper {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 @media screen and (max-width: 530px) {
   .CardList {
