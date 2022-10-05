@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+//import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 
 const App = lazy(() => import("./App"));
@@ -20,8 +20,7 @@ root.render(
             <div className="suspense">
               <p>"We are working for you! Please wait a second"</p>
             </div>
-          }
-        >
+          }>
           <App />
         </Suspense>
       </BrowserRouter>
