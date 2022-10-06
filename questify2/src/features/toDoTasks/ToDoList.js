@@ -6,13 +6,12 @@ import ToDoEditedTask from "./ToDoEditedTask";
 import ToDoCompleted from "./ToDoCompleted";
 import { formattedToday, formattedTomorrow } from "../../utils/date";
 import styles from "./ToDoList.module.css";
-import  {EmptyState}  from "../../components/EmptyState/EmptyState";
+import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 const TodoList = () => {
   const cards = useSelector((state) => state.toDos.cards);
   const editedCard = useSelector((state) => state.toDos.editedCardId);
 
-  
   useEffect(() => {
     // eslint-disable-next-line
   }, [cards]);
@@ -68,9 +67,9 @@ const TodoList = () => {
   return (
     <div>
       {" "}
-      <div>{formStatus && <ToDoForm />}</div>
+      <div className={styles.quests__wrapper}>{formStatus && <ToDoForm />}</div>
       {cards.length > 0 ? (
-        <div>
+        <div className={styles.quests__cards}>
           {questsToday.length > 0 && (
             <div>
               <p>Today</p>
@@ -79,23 +78,21 @@ const TodoList = () => {
             </div>
           )}
           {questsTomorrow.length > 0 && (
-            <div>
+            <div className={styles.quests__cards}>
               <p>Tomorrow</p>
               <ul className={styles.CardList}> {questsTomorrow}</ul>
             </div>
           )}
           {questsOther.length > 0 && (
-            <div>
+            <div className={styles.quests__cards}>
               <p>Next days</p>
               <ul className={styles.CardList}>{questsOther}</ul>
             </div>
           )}
         </div>
       ) : (
-        <div>
-          {!formStatus && (
-         <EmptyState/>
-          )}
+        <div className={styles.empty__wrapper}>
+          {!formStatus && <EmptyState />}
         </div>
       )}
     </div>

@@ -20,8 +20,7 @@ root.render(
             <div className="suspense">
               <p>"We are working for you! Please wait a second"</p>
             </div>
-          }
-        >
+          }>
           <App />
         </Suspense>
       </BrowserRouter>
